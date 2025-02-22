@@ -13,7 +13,7 @@ def auth_user_ldap(username, password):
     try:
         # out is array of outputs, should only be one in this case
         # each output is an array with index 0 being the dn and index 1 being the attrs
-        out = current_app.ldap_conn.search_ext_s(current_app.config["LDAP_BASEDN"],ldap.SCOPE_BASE, filterstr=formatted, attrlist=['memberOf'])
+        out = current_app.ldap_conn.search_ext_s(current_app.config["LDAP_BASEDN"],ldap.SCOPE_SUBTREE, filterstr=formatted, attrlist=['memberOf'])
         if out[0]:
             dn = out[0][0]
             attrs = out[0][1]
